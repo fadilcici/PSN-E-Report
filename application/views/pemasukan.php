@@ -1,10 +1,7 @@
  <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
             <div class="page-title">
-              
 
-              
             </div>
 
             <div class="clearfix"></div>
@@ -16,7 +13,9 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Laporan Pemasukan</h2>
-                        <div class="row">
+                        <div <?php if ($this->session->userdata('group_name') === 'Bendahara Umum' ) {
+                          echo "hidden";
+                        };?> class="row">
                             <span class="pull-right">
                               <button type="button" id="TambahPemasukan" class="btn btn-primary" data-toggle="modal" data-target="#formTambahPemasukan"> <i class="fa fa-plus"></i>
                               Tambah Pemasukan
@@ -36,7 +35,7 @@
                               <div class="modal-body">
                               <?php echo validation_errors(); ?>
 
-                              <?php echo form_open('pemasukan/tambah'); ?>
+                              <?php echo form_open_multipart('pemasukan/tambah'); ?>
   
                                 <div class="row">
                                 <div class="col-md-12">
@@ -66,7 +65,13 @@
 
                                   </div>
                                   <br>
+                                  <div class="row">
+                                    <div class="col-md-4 col-md-offset-1">Bukti</div>
+                                    <div class="col-md-6"><input id="bukti_pend" type="file" name="bukti_pend" class="" placeholder="Browse" required="true"></div>
 
+                                  </div>
+                                  <br>
+                                   </form>
                               </div>
                                 </div>
                                 <div class="modal-footer">
@@ -74,16 +79,35 @@
                                   </div>
                                   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                                 </div>
-                                </form>
+                               
                                 </div>
                           </div>
                         </div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-          
+                  
+                  <!-- Modal -->
+                        <div id="bukti" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Bukti Pemasukan</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>">
+                              </div>
+                          </div>
+                        </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
                     <div class="table-responsive">
-            <table id="data-table" class="table datatable table-bordered table-striped table-hover">
+            <table id="data-table" title="Laporan Pemasukan" class="table table-striped table-bordered nowrap">
             <thead>
               <tr>
                 <th>Id</th>
@@ -91,12 +115,19 @@
                 <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Keterangan</th>
+                <th>Bukti</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $id = $this->session->userdata('user_id');
+              if ($this->session->userdata('group_name') === 'Bendahara Divisi' ){
+                $id = $this->session->userdata('user_id');
               $query = $this->db->get_where('pendapatan', array('id_bend' =>  $id));
+              }
+              else {
+                $query = $this->db->get('pendapatan');
+              };
+              
                 $pend = $query->result_array();
                  foreach ($pend as $pends): ?>
                 <tr>
@@ -105,6 +136,7 @@
                   <td align="left" nowrap="nowrap"><?php echo $pends['tgl_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['jml_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['ket_pend']; ?></td>
+                  <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"></td>
                 </tr>
             <?php endforeach; ?>
                 
@@ -116,8 +148,42 @@
           
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- /page content -->
+        </div>
+      </div>
+      </div>
+      </div>
+
+<script>
+    $("#data-table").dataTable({
+    "title": "Laporan Pemasukan",
+    "scrollX": false,
+    "dom": 'Bfrtip',
+    "bAutoWidth" : false,
+    "buttons": [
+            'copy',
+            {
+                extend: 'excel',
+                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+            },
+            {
+                extend: 'pdf',
+                messageBottom: null
+            },
+            {
+                extend: 'print',
+                messageTop: function () {
+                    printCounter++;
+ 
+                    if ( printCounter === 1 ) {
+                        return 'This is the first time you have printed this document.';
+                    }
+                    else {
+                        return 'You have printed this document '+printCounter+' times';
+                    }
+                },
+                messageBottom: null
+            }
+        ]
+    });
+</script>

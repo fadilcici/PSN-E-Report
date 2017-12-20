@@ -34,6 +34,7 @@ class Pemasukan extends CI_Controller {
 	}
 	public function tambah()
 	{
+
 		$data = array();
 		$data['main_content'] = 'pemasukan';
 
@@ -49,8 +50,23 @@ class Pemasukan extends CI_Controller {
         else
             {
                 $this->pemasukan_model->set_pemasukan();
-                $this->load->view('success');
+             	$this->load->view('success');   
             }
 	}
+	public function get_report(){
+	    $this->load->model('pemasukan_model');
+	    $this->load->dbutil();
+	    $this->load->helper('file');
+	    $this->load->helper('download');
+	    /* get the object   */
+	    $report = $this->pemasukan_model->get_pemasukan();
+	    /*  pass it to db utility function  */
+	    $new_report = $this->dbutil->csv_from_result($report);
+	    /*  Now use it to write file. write_file helper function will do it */
+	    $name = 'csv_file.csv';
+	    //write_file($name,$new_report);
+	    /*  Done    */
+	    force_download($name, $new_report);
+	}
+};
 
-}

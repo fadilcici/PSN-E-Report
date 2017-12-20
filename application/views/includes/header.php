@@ -23,7 +23,7 @@ $row    = $query->row();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <title>eReport-PSN | MpplProject</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url(). 'assets/vendors/bootstrap/dist/css/bootstrap.min.css';?>" rel="stylesheet">
@@ -43,10 +43,6 @@ $row    = $query->row();
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url(). 'assets/build/css/custom.min.css';?>" rel="stylesheet">
-
-
-    
-
   </head>
         <!-- top navigation -->
         <nav class="top_nav">
