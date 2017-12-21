@@ -23,6 +23,30 @@
                               </button>
                             </span>
                         </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="tombol_hapus" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Hapus Data</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Apakah anda yakin?</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="<?php echo base_url('Pengeluaran/hapus');?>">
+                                  <button type="button" class="btn btn-primary">Ya</button></a>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+
                         <!-- Modal -->
                         <div id="formTambahPengeluaran" class="modal fade" role="dialog">
                           <div class="modal-dialog">
@@ -56,7 +80,7 @@
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Jumlah Pengeluaran</div>
-                                    <div class="col-md-6"><input id="harga" type="text" name="jml_peng" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pengeluaran" required="true"></div>
+                                    <div class="col-md-6"><input id="harga" type="number" min="0" name="jml_peng" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pengeluaran" required="true"></div>
                                     
                                   </div>
                                   <br>
@@ -96,6 +120,7 @@
                 <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Keterangan</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -110,6 +135,7 @@
                   <td align="left" nowrap="nowrap"><?php echo $pengs['tgl_peng']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pengs['jml_peng']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pengs['ket_peng']; ?></td>
+                  <td><button type="button" class="btn btn-primary" id="tombolhapus" data-toggle="modal" data-target="#tombol_hapus">hapus</button>
                 </tr>
             <?php endforeach; ?>
                 

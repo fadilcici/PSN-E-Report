@@ -31,6 +31,13 @@ class Pengeluaran extends CI_Controller {
 		$data['id'] = $this->session->userdata('user_id');
 		$this->load->view('includes/template', $data);
 	}
+
+	public function hapus()
+	{
+		$this->pengeluaran_model->hapus($data);
+		redirect($route['default_controller'] = 'Pengeluaran', 'refresh');
+	}
+
 	public function tambah()
 	{
 		$data = array();

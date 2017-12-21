@@ -54,7 +54,7 @@
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Jumlah Pemasukan</div>
-                                    <div class="col-md-6"><input id="harga" type="text" name="jml_pend" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pemasukan" required="true"></div>
+                                    <div class="col-md-6"><input id="harga" type="number" min="0" name="jml_pend" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pemasukan" required="true"></div>
                                     
                                   </div>
                                   <br>
@@ -105,31 +105,31 @@
                                   <div class="row">
                                    
                                     <div class="col-md-4 col-md-offset-1">Nama Pemasukan</div>
-                                    <div class="col-md-6"><input id="nama_barang" type="text" name="nama_pend" class="input-md  textinput textInput form-control" placeholder="Nama Pemasukan" required="true"></div>
+                                    <div class="col-md-6"><input id="nama_barang2" type="text" name="nama_pend" class="input-md  textinput textInput form-control" placeholder="Nama Pemasukan" required="true"></div>
                                   </div>
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Tanggal Pemasukan </div>
-                                    <div class="col-md-6"><input id="datepicker" type="date" name="tgl_pend" class="form-control" placeholder="MM/DD/YYYY" required="true">
+                                    <div class="col-md-6"><input id="datepicker2" type="date" name="tgl_pend" class="form-control" placeholder="MM/DD/YYYY" required="true">
                                     </div>
                                    
                                   </div>
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Jumlah Pemasukan</div>
-                                    <div class="col-md-6"><input id="harga" type="text" name="jml_pend" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pemasukan" required="true"></div>
+                                    <div class="col-md-6"><input id="harga2" type="text" name="jml_pend" onkeyup="" class="input-md  textinput textInput form-control" placeholder="Jumlah Pemasukan" required="true"></div>
                                     
                                   </div>
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Keterangan</div>
-                                    <div class="col-md-6"><input id="masa_manfaat" type="text" name="ket_pend" class="input-md  textinput textInput form-control" placeholder="Keterangan" required="true"></div>
+                                    <div class="col-md-6"><input id="masa_manfaat2" type="text" name="ket_pend" class="input-md  textinput textInput form-control" placeholder="Keterangan" required="true"></div>
 
                                   </div>
                                   <br>
                                   <div class="row">
                                     <div class="col-md-4 col-md-offset-1">Bukti</div>
-                                    <div class="col-md-6"><input id="bukti_pend" type="file" name="bukti_pend" class="" placeholder="Browse" required="true"></div>
+                                    <div class="col-md-6"><input id="bukti_pend2" type="file" name="bukti_pend" class="" placeholder="Browse" required="true"></div>
 
                                   </div>
                                   <br>
@@ -321,11 +321,11 @@ $(document).on( "click", '#tomboleditan',function(e) {
         var ket_pend = $(this).data('ket_pend');
         var tgl_pend = $(this).data('tgl_pend');
         var bukti_pend = $(this).data('bukti_pend');
-        $("#id_hidden").val(id_pend);
-        $("#nama_barang").val(nama_pend);
-        $("#harga").val(jml_pend);
-        $("#masa_manfaat").val(ket_pend);
-        $("#datepicker").val(tgl_pend);
-        $("#bukti_pend").val(bukti_pend);
+        $("#id_hidden2").val(id_pend);
+        $("#nama_barang2").val(nama_pend);
+        $("#harga2").val(jml_pend);
+        $("#masa_manfaat2").val(ket_pend);
+        $("#datepicker2").val(tgl_pend);
+        $("#bukti_pend2").val(bukti_pend);
     });
 </script>

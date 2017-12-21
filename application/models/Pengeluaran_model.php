@@ -16,6 +16,13 @@ class Pengeluaran_model extends CI_Model {
 	        return $query->row_array();
 		}
 
+		public function hapus()
+		{
+			$this->db->select("*");
+			$this->db->where("id_peng",$id_peng);
+			$this->db->delete("pengeluaran",$data);
+		}
+
 		public function set_pengeluaran()
 		{
 
