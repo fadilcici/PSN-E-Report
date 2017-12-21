@@ -55,7 +55,7 @@ class Pemasukan extends CI_Controller {
         else
             {
                 $this->pemasukan_model->set_pemasukan();
-             	$this->load->view('success');   
+             	redirect($route['default_controller'] = 'Pemasukan', 'refresh');  
             }
 	}
 };

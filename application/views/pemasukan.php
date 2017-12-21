@@ -1,4 +1,4 @@
- <!-- page content -->
+<!-- page content -->
         <div class="right_col" role="main">
             <div class="page-title">
 
@@ -13,41 +13,36 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Laporan Pemasukan</h2>
-                        <div <?php if ($this->session->userdata('group_name') === 'Bendahara Umum' ) {
-                          echo "hidden";
-                        };?> class="row">
+                        <div class="row">
                             <span class="pull-right">
                               <button type="button" id="TambahPemasukan" class="btn btn-primary" data-toggle="modal" data-target="#formTambahPemasukan"> <i class="fa fa-plus"></i>
                               Tambah Pemasukan
                               </button>
                             </span>
                         </div>
-
+                          
                         <!-- Modal -->
-                        <div id="apayagitu" class="modal fade" role="dialog">
+                        <div id="formTambahPemasukan" class="modal fade" role="dialog">
                           <div class="modal-dialog">
-                             <?php
-                                ;
-                                $id2 = $this->input->post('id_pend');;
-                                $query2 = $this->db->get_where('pendapatan', array('id_pend' =>  $id2));
-                                $pend2 = $query2->result_array();
-                                 foreach ($pend2 as $pends2): ?>
+
                             <!-- Modal content-->
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Detail Pemasukan</h4>
+                                <h4 class="modal-title">Tambah Pemasukan</h4>
                               </div>
-                              <div class="modal-body">>
+                              <div class="modal-body">
+                              <?php echo validation_errors(); ?>
+
+                              <?php echo form_open('pemasukan/tambah'); ?>
   
                                 <div class="row">
                                 <div class="col-md-12">
                                   <form name="simpan_data" action="" method="post">
                                   <div class="row">
                                    
-                                    <input id="id_hidden" type="hidden">
                                     <div class="col-md-4 col-md-offset-1">Nama Pemasukan</div>
-                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6"><input id="nama_barang" type="text" name="nama_pend" class="input-md  textinput textInput form-control" placeholder="Nama Pemasukan" required="true"></div>
                                   </div>
                                   <br>
                                   <div class="row">
@@ -75,21 +70,22 @@
 
                                   </div>
                                   <br>
-                                   </form>
+                                  <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                                   
                               </div>
                                 </div>
                                 <div class="modal-footer">
                                   <div class="col-md-12"><span class="pull-right"><input type="submit" name="simpan" value="Simpan" class="btn btn-primary" id="simpan"></span></div>
                                   </div>
                                   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                                <!-- </div> -->
-                               
                                 </div>
-                                <?php endforeach; ?>
+                                </form>                             
+                                </div>
                           </div>
                         </div>
+
                         <!-- Modal -->
-                        <div id="formTambahPemasukan" class="modal fade" role="dialog">
+                        <div id="TombolEdit" class="modal fade" role="dialog">
                           <div class="modal-dialog">
 
                             <!-- Modal content-->
@@ -150,6 +146,7 @@
                                 </div>
                           </div>
                         </div>
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -205,7 +202,7 @@
                   <td align="left" nowrap="nowrap"><?php echo $pends['jml_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['ket_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"></td>
-                  <td ><button id="tomboleditan" class="btn btn-primary" data-toggle="modal" data-target="#formTambahPemasukan" data-id_pend="<?php echo $pends['id_pend']; ?>"
+                  <td ><button id="tomboleditan" class="btn btn-primary" data-toggle="modal" data-target="#TombolEdit" data-id_pend="<?php echo $pends['id_pend']; ?>"
                   data-nama_pend="<?php echo $pends['nama_pend']; ?>"
                   data-jml_pend="<?php echo $pends['jml_pend']; ?>"
                   data-ket_pend="<?php echo $pends['ket_pend']; ?>"
@@ -260,7 +257,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title"><i class="fa fa-bars"></i> Detail Group</h4>
       </div>
-      <form action="#" method="post">
+      <form action="" method="post">
         <div class="modal-body">
           
           <div id="contentModal"></div>
@@ -317,7 +314,6 @@
   //     }
   //   })
   // };
-
 $(document).on( "click", '#tomboleditan',function(e) {
         var id_pend = $(this).data('id_pend');
         var nama_pend = $(this).data('nama_pend');
@@ -325,14 +321,11 @@ $(document).on( "click", '#tomboleditan',function(e) {
         var ket_pend = $(this).data('ket_pend');
         var tgl_pend = $(this).data('tgl_pend');
         var bukti_pend = $(this).data('bukti_pend');
-
         $("#id_hidden").val(id_pend);
         $("#nama_barang").val(nama_pend);
         $("#harga").val(jml_pend);
         $("#masa_manfaat").val(ket_pend);
         $("#datepicker").val(tgl_pend);
         $("#bukti_pend").val(bukti_pend);
-
     });
-
 </script>

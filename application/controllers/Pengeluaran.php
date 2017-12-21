@@ -48,7 +48,7 @@ class Pengeluaran extends CI_Controller {
         else
             {
                 $this->pengeluaran_model->set_pengeluaran();
-                $this->load->view('success');
+                redirect($route['default_controller'] = 'Pengeluaran', 'refresh');
             }
 	}
 }
