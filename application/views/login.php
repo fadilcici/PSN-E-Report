@@ -10,10 +10,10 @@
 /*
  * General styles
  */
-body, html {
+body {
     height: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: url(<?php echo base_url(). 'assets/f.jpg';?>);
+    font-family:sans-serif;
 }
 
 .card-container.card {
@@ -84,8 +84,8 @@ body, html {
     box-sizing: border-box;
 }
 
-.form-signin #inputEmail,
-.form-signin #inputPassword {
+.form-signin #user_login,
+.form-signin #user_pass {
     direction: ltr;
     height: 44px;
     font-size: 16px;
@@ -231,34 +231,39 @@ function testLocalStorageData() {
 	</script>
 </head>
 <body>
-	<!--
-    you can substitue the span of reauth email for a input with the email and
-    include the remember me checkbox
-    -->
-    <form action="<?php echo base_url() ?>Login/login_prosses" method="POST" class="margin-bottom-0">
-      <div class="form-group has-feedback">
-    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
-        <input type="text" name="user_login" class="form-control" placeholder="Username" required>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="user_pass" class="form-control" placeholder="Password" required>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox" name="setcookie" value="true" id="setcookie"> Remember Me
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" id="login-button" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
+   <div class="container" >
+        <div class="card card-container" style="margin-top: 100px" >
+            <h1 style="text-align: center; font-family: sans-serif;">E-Report PSN</h1>
+            <img id="profile-img" class="profile-img-card" src="https://3.bp.blogspot.com/-L56uTIdRpFo/WdGvOT8JmXI/AAAAAAAAAxY/sOQNRLKrEPgYwJIsNSFVteaDJ3yKfWpHQCLcBGAs/s1600/PSN%2BIPB%2B2017.jpg" />
+            <!-- <div style="background-color: #eaeaec; padding: 50px;" class="center" > -->
+            <br>
+                <form action="<?php echo base_url() ?>Login/login_prosses" method="POST" class="form-signin">
+                <!-- <span id="reauth-email" class="reauth-email"></span> -->
+                <!-- <div class="form-group has-feedback"> -->
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                    <input type="text" id="user_login" name="user_login" class="form-control" placeholder="Username" required>
+                    <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+                <!-- </div> -->
+                    <input type="password" id="user_pass" name="user_pass" class="form-control" placeholder="Password" required>
+                    <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
+                <!-- <div class="row"> -->
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                            <input type="checkbox" name="setcookie" value="true" id="setcookie"> Remember Me
+                            </label>
+                        <div id="remember" class="checkbox">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
+            </form><!-- /form -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
 </body>
 </html>

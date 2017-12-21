@@ -24,7 +24,7 @@
                         </div>
 
                         <!-- Modal -->
-                        <div id="detailpend" class="modal fade" role="dialog">
+                        <div id="apayagitu" class="modal fade" role="dialog">
                           <div class="modal-dialog">
                              <?php
                                 ;
@@ -45,6 +45,7 @@
                                   <form name="simpan_data" action="" method="post">
                                   <div class="row">
                                    
+                                    <input id="id_hidden" type="hidden">
                                     <div class="col-md-4 col-md-offset-1">Nama Pemasukan</div>
                                     <div class="col-md-6"></div>
                                   </div>
@@ -81,7 +82,7 @@
                                   <div class="col-md-12"><span class="pull-right"><input type="submit" name="simpan" value="Simpan" class="btn btn-primary" id="simpan"></span></div>
                                   </div>
                                   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                                </div>
+                                <!-- </div> -->
                                
                                 </div>
                                 <?php endforeach; ?>
@@ -95,7 +96,7 @@
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Pemasukan Baru</h4>
+                                <h4 class="modal-title">Detail</h4>
                               </div>
                               <div class="modal-body">
                               <?php echo validation_errors(); ?>
@@ -204,7 +205,12 @@
                   <td align="left" nowrap="nowrap"><?php echo $pends['jml_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['ket_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"></td>
-                  <td ><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailpend(<?php echo $pends['id_pend']; ?>)" ><i class="fa fa-search"></i></button>
+                  <td ><button id="tomboleditan" class="btn btn-primary" data-toggle="modal" data-target="#formTambahPemasukan" data-id_pend="<?php echo $pends['id_pend']; ?>"
+                  data-nama_pend="<?php echo $pends['nama_pend']; ?>"
+                  data-jml_pend="<?php echo $pends['jml_pend']; ?>"
+                  data-ket_pend="<?php echo $pends['ket_pend']; ?>"
+                  data-tgl_pend="<?php echo $pends['tgl_pend']; ?>"
+                  data-bukti_pend="<?php echo $pends['bukti_pend']; ?>"><i class="fa fa-search"></i></button>
                   </td>
                 </tr>
             <?php endforeach; ?>
@@ -214,6 +220,7 @@
           </table>
           </div>
           
+
           
                   </div>
                 </div>
@@ -222,6 +229,28 @@
       </div>
       </div>
       </div>
+
+<!-- Modal coba-->
+  <div class="modal fade" id="modalcoba" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 
 <!-- COMPOSE MESSAGE MODAL -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -277,15 +306,33 @@
             }
         ]
     });
-    function detailpend(id) {
-    $('#myModal').modal('show');  
-    $.ajax({
-      type:"POST",
-      url:"<?php echo base_url() ?>Pemasukan/GET_DETAIL(id)",
-      data:{id:id,<?php echo $this->security->get_csrf_token_name(); ?>:'<?php echo $this->security->get_csrf_hash(); ?>'},
-      success:function(msg){
-        $("contentModal").html(msg);
-      }
-    })
-  };
+  //   function detailpend(id) {
+  //   $('#myModal').modal('show');  
+  //   $.ajax({
+  //     type:"POST",
+  //     url:"<?php echo base_url() ?>Pemasukan/GET_DETAIL(id)",
+  //     data:{id:id,<?php echo $this->security->get_csrf_token_name(); ?>:'<?php echo $this->security->get_csrf_hash(); ?>'},
+  //     success:function(msg){
+  //       $("contentModal").html(msg);
+  //     }
+  //   })
+  // };
+
+$(document).on( "click", '#tomboleditan',function(e) {
+        var id_pend = $(this).data('id_pend');
+        var nama_pend = $(this).data('nama_pend');
+        var jml_pend = $(this).data('jml_pend');
+        var ket_pend = $(this).data('ket_pend');
+        var tgl_pend = $(this).data('tgl_pend');
+        var bukti_pend = $(this).data('bukti_pend');
+
+        $("#id_hidden").val(id_pend);
+        $("#nama_barang").val(nama_pend);
+        $("#harga").val(jml_pend);
+        $("#masa_manfaat").val(ket_pend);
+        $("#datepicker").val(tgl_pend);
+        $("#bukti_pend").val(bukti_pend);
+
+    });
+
 </script>
