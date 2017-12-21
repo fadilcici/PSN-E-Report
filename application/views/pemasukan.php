@@ -20,7 +20,7 @@
                               </button>
                             </span>
                         </div>
-                          
+            
                         <!-- Modal -->
                         <div id="formTambahPemasukan" class="modal fade" role="dialog">
                           <div class="modal-dialog">
@@ -150,6 +150,29 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+
+                  <!-- Modal -->
+                            <div class="modal fade" id="tombol_hapus" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Hapus Data</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Apakah anda yakin?</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="<?php echo base_url('Pengeluaran/hapus');?>">
+                                  <button type="button" class="btn btn-primary">Ya</button></a>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>
                   
                   <!-- Modal -->
                         <div id="bukti" class="modal fade" role="dialog">
@@ -179,8 +202,7 @@
                 <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Keterangan</th>
-                <th>Bukti</th>
-                <th>Detail</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -201,13 +223,14 @@
                   <td align="left" nowrap="nowrap"><?php echo $pends['tgl_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['jml_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['ket_pend']; ?></td>
-                  <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"></td>
+<!--                   <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"> -->
                   <td ><button id="tomboleditan" class="btn btn-primary" data-toggle="modal" data-target="#TombolEdit" data-id_pend="<?php echo $pends['id_pend']; ?>"
                   data-nama_pend="<?php echo $pends['nama_pend']; ?>"
                   data-jml_pend="<?php echo $pends['jml_pend']; ?>"
                   data-ket_pend="<?php echo $pends['ket_pend']; ?>"
                   data-tgl_pend="<?php echo $pends['tgl_pend']; ?>"
                   data-bukti_pend="<?php echo $pends['bukti_pend']; ?>"><i class="fa fa-search"></i></button>
+                  <button id="deletebutton" class="btn btn-primary" data-toggle="modal" data-target="#tombol_hapus">Hapus</button>
                   </td>
                 </tr>
             <?php endforeach; ?>
@@ -328,4 +351,5 @@ $(document).on( "click", '#tomboleditan',function(e) {
         $("#datepicker2").val(tgl_pend);
         $("#bukti_pend2").val(bukti_pend);
     });
+
 </script>
