@@ -204,7 +204,7 @@
                   <td align="left" nowrap="nowrap"><?php echo $pends['jml_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><?php echo $pends['ket_pend']; ?></td>
                   <td align="left" nowrap="nowrap"><img src="./assets/dist/upload/<?php echo $pends['bukti_pend']; ?>"></td>
-                  <td ><button type="button" class="btn btn-primary" onclick="detailpend(<?php echo $pends['id_pend']; ?>)" ><i class="fa fa-search"></i></button>
+                  <td ><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailpend(<?php echo $pends['id_pend']; ?>)" ><i class="fa fa-search"></i></button>
                   </td>
                 </tr>
             <?php endforeach; ?>
